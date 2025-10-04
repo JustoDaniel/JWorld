@@ -14,7 +14,7 @@ terraform {
 }
 
 locals {
-  project_id   = "seu-gcp-project-id" 
+  project_id   = "terraform-teste-projeto01" 
   instance_name = "j-srv01"
   machine_type = "e2-medium"          
   zone         = "us-central1-a"     
@@ -50,7 +50,7 @@ resource "google_compute_instance" "j-srv01" {
   
   labels = {
     owner = "Justo"
-    lab = "Laboaratoria-2025-10-04"
+    lab = "Laboratoria-2025-10-04"
     env   = "Justo-dev"
   }
 
