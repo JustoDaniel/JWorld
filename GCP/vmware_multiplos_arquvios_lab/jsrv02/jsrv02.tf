@@ -13,7 +13,9 @@ terraform {
 locals {
   project_id         = "terraform-teste-projeto01"
   instance_name      = "j-srv02"
-  machine_type       = "n2-standard-2"
+ // machine_type       = "n1-highmem-32" // Funcionou depois que troquei de n1-highmem-8
+ // machine_type       = "n2d-standard-8" // Funcionou depois que troquei de n1-highmem-32
+  machine_type       = "e2-standard-2"
   zone               = "us-central1-a"
   tags               = ["web-server", "terraform-managed"]
   image              = "windows-cloud/windows-2022"
@@ -30,9 +32,9 @@ resource "google_compute_instance" "j-srv02" {
   machine_type = local.machine_type
   tags         = local.tags
 
-  advanced_machine_features {
-      enable_display_device = true
-  }  
+
+      
+   
   
   #Essa parte a cima ainda esta errada preciso corrigi-la depois para aparecer o display
 
@@ -62,7 +64,7 @@ resource "google_compute_instance" "j-srv02" {
 
   # Permite que a VM seja deletada via Terraform sem erros de proteção.
   allow_stopping_for_update = true
-
+  enable_display            = true  //habilita a exibição de print screen do display (console da máquina)
  
 
 
