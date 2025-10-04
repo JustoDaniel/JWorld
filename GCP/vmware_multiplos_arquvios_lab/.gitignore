@@ -1,0 +1,22 @@
+# Ignora o diretório de trabalho do Terraform
+.terraform/
+
+# Ignora os arquivos de estado do Terraform
+*.tfstate
+*.tfstate.*.backup
+
+# Ignora crash.log
+crash.log
+
+# Ignora arquivos de variáveis de ambiente
+*.tfvars
+*.tfvars.json
+
+# Ignora arquivos de override, se usados
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignora arquivos de cache de plugins (se .terraform/ já não cobrir tudo)
+.terraform.lock.hcl
