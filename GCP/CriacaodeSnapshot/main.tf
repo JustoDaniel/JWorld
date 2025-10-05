@@ -10,7 +10,10 @@ data "google_compute_instance" "instance" {
 # Bloco de recursos para criar os snapshots
 # Utiliza 'for_each' para iterar sobre cada disco anexado à instância
 resource "google_compute_snapshot" "disk_snapshots" {
-  for_each = toset([for disk in data.google_compute_instance.instance.attached_disk : disk.source])
+    for_each = toset(concat(
+    [data.google_compute_instance.instance.boot_disk.0.source],
+    [for disk in data.google_compute_instance.instance.attached_disk : disk.source]
+  ))
 
   name    = "${var.ticket_number}-${data.google_compute_instance.instance.name}-${element(split("/", each.value), length(split("/", each.value)) - 1)}-${formatdate("YYYYMMDD-HHmmss", timestamp())}"
   source_disk = each.value
@@ -26,7 +29,7 @@ resource "google_compute_snapshot" "disk_snapshots" {
     raw_key = "Sua chave de criptografia em base64 aqui, se necessário" # Opcional: Remova se não usar CMEK
   } */
 
-  storage_locations = ["us-central1"] # Opcional: Especifique a localização do snapshot se desejar
+  storage_locations = [var.regiao] # Opcional: Especifique a localização do snapshot se desejar
 }
 
 # (Opcional) Bloco de saída para mostrar os nomes dos snapshots criados

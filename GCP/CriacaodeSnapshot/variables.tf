@@ -28,3 +28,8 @@ variable "ticket_number" {
 provider "google" {
   project = var.gcp_project_id
 }
+
+variable "regiao" {
+  description = "A região onde o snapshot será armazenado (ex: us-central1)."
+  type        = string
+}
