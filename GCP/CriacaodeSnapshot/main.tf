@@ -18,6 +18,7 @@ resource "google_compute_snapshot" "disk_snapshots" {
 
   labels = {
     "created_by"   = "terraform"
+    "owner"        = "sauter"
     "instance_name" = var.instance_name
   }
 

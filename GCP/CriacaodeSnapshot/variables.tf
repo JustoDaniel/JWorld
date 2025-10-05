@@ -9,10 +9,10 @@ variable "instance_name" {
   type        = string
 }
 
-variable "snapshot_prefix" {
+/* variable "snapshot_prefix" {
   description = "O prefixo para o nome de cada snapshot criado."
   type        = string
-}
+} */
 
 variable "instance_zone" {
   description = "A zona onde a instância está localizada (ex: us-central1-a)."
