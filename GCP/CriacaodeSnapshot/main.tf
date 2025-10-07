@@ -1,14 +1,13 @@
 
 
-# Bloco de dados para buscar as informações da instância especificada
+
 data "google_compute_instance" "instance" {
   name    = var.instance_name
   zone    = var.instance_zone
   project = var.gcp_project_id
 }
 
-# Bloco de recursos para criar os snapshots
-# Utiliza 'for_each' para iterar sobre cada disco anexado à instância
+# Bloco para fazer loop e pegar todos os discos
 resource "google_compute_snapshot" "disk_snapshots" {
     for_each = toset(concat(
     [data.google_compute_instance.instance.boot_disk.0.source],
@@ -24,10 +23,6 @@ resource "google_compute_snapshot" "disk_snapshots" {
     "owner"        = "sauter"
     "instance_name" = var.instance_name
   }
-
-/*   snapshot_encryption_key {
-    raw_key = "Sua chave de criptografia em base64 aqui, se necessário" # Opcional: Remova se não usar CMEK
-  } */
 
   storage_locations = [var.regiao] # Opcional: Especifique a localização do snapshot se desejar
 }
