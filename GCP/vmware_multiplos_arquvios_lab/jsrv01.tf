@@ -8,7 +8,7 @@ terraform {
 
   backend "gcs" {
     bucket = "tf-state-justo" # <-- MUDE AQUI para o nome do bucket que você criou
-    prefix = "terraform-vmware-multiplos-arquivos-lab"          # (Opcional) Uma pasta dentro do bucket para organizar o estado
+    prefix = "tf-multiplos-machines-01"          # (Opcional) Uma pasta dentro do bucket para organizar o estado
   }
 
 }
@@ -21,6 +21,7 @@ locals {
   tags         = ["web-server", "terraform-managed"]
   image        = "debian-cloud/debian-11"    
   network      = "default"
+  static_internal_ip = "10.128.0.29"
 }
 
 
@@ -30,6 +31,9 @@ resource "google_compute_instance" "j-srv01" {
   name         = local.instance_name
   machine_type = local.machine_type
   tags         = local.tags
+  
+  
+
 
 
   boot_disk {
@@ -41,17 +45,18 @@ resource "google_compute_instance" "j-srv01" {
  
   network_interface {
     network = local.network
+    network_ip = local.static_internal_ip
 
-    # Este bloco vazio atribui um endereço IP público temporário à VM.
+/*      # Este bloco vazio atribui um endereço IP público temporário à VM.
     access_config {
-    }
+    }  */
   }
 
   
   labels = {
-    owner = "Justo"
-    lab = "Laboratoria-2025-10-04"
-    env   = "Justo-dev"
+    owner = "justo"
+    lab = "laboratoria-2025-10-04"
+    env   = "justo-dev"
   }
 
   # Permite que a VM seja deletada via Terraform sem erros de proteção.

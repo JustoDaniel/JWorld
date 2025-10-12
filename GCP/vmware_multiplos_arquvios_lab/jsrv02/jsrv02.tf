@@ -2,7 +2,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.50.0"
+      version = "7.5.0"
     }
   }
 
@@ -30,11 +30,11 @@ resource "google_compute_instance" "j-srv02" {
   machine_type = local.machine_type
   tags         = local.tags
 
-  advanced_machine_features {
-      enable_display_device = true
-  }  
-  
-  #Essa parte a cima ainda esta errada preciso corrigi-la depois para aparecer o display
+ metadata = {
+    enable-guest-attributes = "TRUE"
+  }
+
+
 
   boot_disk {
     initialize_params {
