@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/JustoDaniel/JWorld.git'
     targetRevision: HEAD
-    path: argocd/apps/guestbook
+    path: argocd/guestbook
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: guestbook
@@ -29,7 +29,7 @@ spec:
   source:
     repoURL: 'https://github.com/JustoDaniel/JWorld.git'
     targetRevision: HEAD
-    path: argocd/apps/prometheus
+    path: argocd/prometheus
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
