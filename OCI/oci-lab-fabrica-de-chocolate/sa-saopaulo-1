@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaaghkkvbzi5mjfxrbrwrebmmu22yutalgryomual36u5en7ayujqvq
+fingerprint=f8:3e:79:e1:91:0f:8f:8b:dd:b5:4f:a4:84:af:73:2c
+key_file=/home/justo/.oci/oci_api_key.pem
+tenancy=ocid1.tenancy.oc1..aaaaaaaa5gopwfkaevaz2ybsvqopbb5n3cb223lxtxwkgfyu537vgef675sq
+region=sa-saopaulo-1
