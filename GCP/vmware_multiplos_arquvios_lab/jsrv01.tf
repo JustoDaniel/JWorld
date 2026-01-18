@@ -49,9 +49,9 @@ resource "google_compute_instance" "j-srv01" {
 
   
   labels = {
-    owner = "Justo"
-    lab = "Laboratoria-2025-10-04"
-    env   = "Justo-dev"
+    owner = "justo"
+    lab = "laboratorio-2025-10-04"
+    env   = "justo-dev"
   }
 
   # Permite que a VM seja deletada via Terraform sem erros de proteção.
